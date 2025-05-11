@@ -3,26 +3,27 @@ import matplotlib.pyplot as plt
 from collections import Counter
 from wordcloud import WordCloud
 
-# Step 1: Load the dataset
+plt.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams['font.size'] = 15
+plt.rcParams['font.weight'] = 'bold'
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.labelweight'] = 'bold'
+
+# Load the dataset
 df = pd.read_excel('../data/dataset.xlsx')
 
-# Step 2: Basic Inspection
-print("First few rows of the dataset:")
-print(df.head())
-print("\nDataset information:")
-df.info()
-print("\nMissing values in each column:")
-print(df.isnull().sum())
 
-# Step 3: Explore Label Distribution
-print("\nLabel distribution:")
+# Label Distribution
+print("Label distribution:")
 print(df['Label'].value_counts())
 
 # Visualization: Bar plot of label distribution
 df['Label'].value_counts().plot(kind='bar')
-plt.title('Distribution of Labels')
+# plt.title('Distribution of Labels')
 plt.xlabel('Labels')
 plt.ylabel('Count')
+plt.tight_layout()
+plt.savefig("Distribution of Labels",dpi=500)
 plt.show()
 
 # Step 4: Analyze Text Lengths
